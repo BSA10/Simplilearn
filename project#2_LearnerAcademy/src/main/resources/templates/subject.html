@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Subject</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="container-sm p-5">
+        <h1 class="d-flex justify-content-center">Subjects</h1>
+        <table class="table table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>class</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody th:each="subject,st : ${subjects}">
+            <td th:text="${subject.id}"/>
+            <td th:text="${subject.title}"/>
+            <td>
+                <span th:each="cl : ${subject.classes}">
+                    <span th:text="${cl.name}"></span> |
+                </span>
+            </td>
+            <td>
+                <a th:href="@{/update-subject(subjectId = ${subject.id})}"
+                   class="btn btn-info btn-sm" >Update
+                </a>
+                <a th:href="@{/subject/delete(subjectId = ${subject.id})}"
+                   class="btn btn-danger btn-sm" onclick="if (!(confirm('Are You Sure ?'))) return false">Delete</a>
+            </td>
+            </tbody>
+        </table>
+    </div>
+
+<br><br><hr>
+    <div class="d-flex justify-content-center">
+        <a th:href="@{/addSubject}" class="btn btn-info">Add Subject</a>
+    </div>
+    <br><br><hr>
+    <div class="d-flex justify-content-center mt-5">
+        <a class="btn btn-info" th:href="@{/}">Home</a>
+    </div>
+</div>
+</body>
+</html>
