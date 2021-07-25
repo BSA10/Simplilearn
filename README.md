@@ -1,1 +1,1 @@
-# Simplilearn Certification Projects -
+# Simplilearn Certification Projects 
