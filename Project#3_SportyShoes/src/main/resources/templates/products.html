@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/dashboard/style.css}">
+
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+    <!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <!--    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">-->
+    <!--    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>-->
+    <!--    <script th:src="@{../../dashboard/table.js}"></script>-->
+
+
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark justify-content-start">
+    <div class="container justify-content-start">
+        <a class="navbar-brand" th:href="@{/}">
+            <span class="shadow ">Home</span>
+        </a>
+        <a class="navbar-brand" th:href="@{/admin/dashboard}">
+            <span class="shadow ">Dashboard</span>
+        </a>
+    </div>
+</nav>
+
+<div class="container">
+
+
+    <div class="container-sm p-5">
+        <h1 class="d-flex justify-content-center">Products</h1>
+        <table class="" id="productsTable">
+            <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Picture url</th>
+                <th>Categories</th>
+                <th>Created At</th>
+                <th>Action</th>
+            </tr>
+
+            </thead>
+
+            <tbody th:each="product : ${products}">
+            <td th:text="${product.id}"/>
+            <td th:text="${product.name}"/>
+            <td th:text="${product.price}"/>
+            <td th:text="${product.picture_url}"/>
+            <td>
+                <div th:each="category : ${product.categories}">
+                    <span th:text="${category.name}"></span> |
+                </div>
+            </td>
+            <td th:text="${product.created_at}"></td>
+            <td>
+                <a th:href="@{/admin/dashboard/products/update-product(productId = ${product.id})}"
+                   class="btn btn-info btn-sm" onclick="if (!(confirm('Are You Sure ?'))) return false">Update</a>
+                <a th:href="@{/admin/dashboard/products/delete(productId = ${product.id})}"
+                   class="btn btn-danger btn-sm" onclick="if (!(confirm('Are You Sure ?'))) return false">Delete</a>
+            </td>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container-fluid pt-2">
+        <div class="d-flex justify-content-center">
+            <a th:href="@{/admin/dashboard/products-table}" class="btn btn-light border col-8 shadow bg-body mx-3 mb-5">
+                <div class="d-flex justify-content-center">
+                    <label class="label d-flex justify-content-center pt-3">For Advanced Tables</label>
+                </div>
+            </a>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a th:href="@{/admin/dashboard/products/add-product}" class="btn btn-light border col-2 shadow bg-body mx-3">
+                <div class="d-flex justify-content-center">
+                    <label class="label d-flex justify-content-center pt-3">Add Product</label>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
+</body>
+</html>

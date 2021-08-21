@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/dashboard/style.css}">
+
+
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark justify-content-start">
+    <div class="container justify-content-start">
+        <a class="navbar-brand" th:href="@{/}">
+            <span class="shadow ">Home</span>
+        </a>
+        <a class="navbar-brand" th:href="@{/admin/dashboard}">
+            <span class="shadow ">Dashboard</span>
+        </a>
+    </div>
+</nav>
+
+
+<div class="container">
+
+    <div class="pt-5">
+        <div class="d-flex justify-content-center pb-5">
+            <h1 >Admin Control</h1>
+        </div>
+        <div class="d-flex flex-row-reverse justify-content-center">
+
+            <a th:href="@{/admin/dashboard/products}" class="btn btn-light border col-2 shadow bg-body mx-3">
+                <div class="d-flex flex-column justify-content-center">
+                    <label class="label d-flex justify-content-center pt-3">Products</label>
+                </div>
+            </a>
+
+            <a th:href="@{/admin/dashboard/users}" class="btn btn-light border col-2 shadow bg-body mx-3">
+                <div class="d-flex flex-column justify-content-center">
+                    <label class="label d-flex justify-content-center pt-3">Users</label>
+                </div>
+            </a>
+
+            <a th:href="@{/admin/dashboard/category}" class="btn btn-light border col-2 shadow bg-body mx-3">
+                <div class="d-flex flex-column justify-content-center">
+                    <label class="label d-flex justify-content-center pt-3">Category</label>
+                </div>
+            </a>
+            <a th:href="@{/admin/dashboard/purchase-report}" class="btn btn-light border col-2 shadow bg-body mx-3">
+                <div class="d-flex flex-column justify-content-center">
+                    <label class="label d-flex justify-content-center pt-3">Purchase Report</label>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

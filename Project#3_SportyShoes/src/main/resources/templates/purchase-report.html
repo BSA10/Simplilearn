@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Purchase Report</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/dashboard/style.css}">
+
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<!--    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">-->
+<!--    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>-->
+<!--    <script th:src="@{../../dashboard/report.js}"></script>-->
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark justify-content-start">
+    <div class="container justify-content-start">
+        <a class="navbar-brand" th:href="@{/}">
+            <span class="shadow ">Home</span>
+        </a>
+        <a class="navbar-brand" th:href="@{/admin/dashboard}">
+            <span class="shadow ">Dashboard</span>
+        </a>
+    </div>
+</nav>
+
+<div class="container">
+
+
+    <div class="container-sm p-5">
+        <h1 class="d-flex justify-content-center">Purchase Report</h1>
+        <table class="table table-hover" >
+            <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>User</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th>Products</th>
+                <th>Category</th>
+                <th>Purchase At</th>
+            </tr>
+
+            </thead>
+<!--            <tfoot >-->
+<!--            <tr th:each="order : ${purchase}">-->
+<!--                <th>id</th>-->
+<!--                <th>user</th>-->
+<!--                <th>Status</th>-->
+<!--                <th>Total</th>-->
+<!--                <th>products-->
+<!--                    <div th:each="product : ${order.products}">-->
+<!--                        <span th:text="${product.name}"></span> |-->
+<!--                    </div>-->
+<!--                </th>-->
+<!--                <th>Category</th>-->
+<!--                <th>Purchase At</th>-->
+<!--            </tr>-->
+<!--            </tfoot>-->
+            <tbody th:each="order : ${purchase}">
+                            <td th:text="${order.id}"></td>
+                            <td th:text="${order.user.username}"></td>
+                            <td th:text="${order.status}"></td>
+                            <td th:text="${order.total}"></td>
+                            <td>
+                                <div th:each="product : ${order.products}">
+                                    <span th:text="${product.name}"></span> |
+                                </div>
+                            </td>
+                            <td >
+                                <div th:each="product : ${order.products}">
+                                    <div th:each="category : ${product.categories}">
+                                        <span th:text="${category.name}"></span> |
+                                    </div>
+                                </div>
+                            </td>
+                            <td th:text="${order.created_at}"></td>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+</body>
+</html>

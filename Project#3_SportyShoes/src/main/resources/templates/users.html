@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
+
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" th:href="@{../../css/animate.css}">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" th:href="@{../../css/icomoon.css}">
+    <!-- Ion Icon Fonts-->
+    <link rel="stylesheet" th:href="@{../../css/ionicons.min.css}">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" th:href="@{../../css/bootstrap.min.css}">
+
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" th:href="@{../../css/magnific-popup.css}">
+
+    <!-- Flexslider  -->
+    <link rel="stylesheet" th:href="@{../../css/flexslider.css}">
+
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" th:href="@{../../css/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{../../css/owl.theme.default.min.css}">
+
+    <!-- Date Picker -->
+    <link rel="stylesheet" th:href="@{../../css/bootstrap-datepicker.css}">
+    <!-- Flaticons  -->
+    <link rel="stylesheet" th:href="@{../../fonts/flaticon/font/flaticon.css}">
+
+    <!-- Theme style  -->
+    <link rel="stylesheet" th:href="@{../../css/style.css}">
+
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+    <link rel="stylesheet" th:href="@{/dashboard/style.css}">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark justify-content-start">
+    <div class="container justify-content-start">
+        <a class="navbar-brand" th:href="@{/}">
+            <span class="shadow ">Home</span>
+        </a>
+        <a class="navbar-brand" th:href="@{/admin/dashboard}">
+            <span class="shadow ">Dashboard</span>
+        </a>
+    </div>
+</nav>
+
+
+<div class="container">
+
+
+
+    <div class="container-sm p-5">
+        <h1 class="d-flex justify-content-center">Users</h1>
+        <div class="row">
+            <div class="col-sm-5 col-md-3">
+                <form action="/admin/dashboard/search" class="search-wrap">
+                    <div class="form-group">
+                        <input type="search" class="form-control search" name="userName" placeholder="Search">
+                        <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <table class="table table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th width="10">Password</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Role</th>
+                <th>Enable</th>
+                <th>Created At</th>
+                <th>Action</th>
+            </tr>
+
+            </thead>
+            <tbody th:each="user : ${users}">
+            <td th:text="${user.id}"/>
+            <td th:text="${user.first_name}"/>
+            <td th:text="${user.last_name}"/>
+            <td>
+                <a th:href="@{/admin/dashboard/users/user-details(userId=${user.id})}">
+                    <span  th:text="${user.username}"></span>
+                </a>
+            </td>
+            <td >
+                <div>
+                    <span id="showPassword">
+                        <button class="btn btn-dark" name="passwordShow" >Show Password</button>
+                        <span name="pass"  th:text="${user.password}" hidden></span>
+                    </span>
+                </div>
+            </td>
+            <td th:text="${user.email}"/>
+            <td th:text="${user.phone}"/>
+            <td th:text="${user.role}"/>
+            <td th:text="${user.enable}"/>
+            <td th:text="${user.created_at}"/>
+            <td>
+                <a th:href="@{/admin/dashboard/users/update-user(userId = ${user.id})}"
+                   class="btn btn-info btn-sm" onclick="if (!(confirm('Are You Sure ?'))) return false">Update</a>
+                <a th:href="@{/admin/dashboard/users/delete(userId = ${user.id})}"
+                   class="btn btn-danger btn-sm" onclick="if (!(confirm('Are You Sure ?'))) return false">Delete</a>
+            </td>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container-fluid pt-2">
+        <div class="d-flex justify-content-center">
+            <a th:href="@{/admin/dashboard/users/add-user}" class="btn btn-light border col-2 shadow bg-body mx-3">
+                <div class="d-flex justify-content-center">
+                    <label class="label d-flex justify-content-center pt-3">Add Users</label>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<!-- jQuery -->
+<script th:src="@{../../js/jquery.min.js}"></script>
+<!-- popper -->
+<script th:src="@{../../js/popper.min.js}"></script>
+<!-- bootstrap 4.1 -->
+<script th:src="@{../../js/bootstrap.min.js}"></script>
+<!-- jQuery easing -->
+<script th:src="@{../../js/jquery.easing.1.3.js}"></script>
+<!-- Waypoints -->
+<script th:src="@{../../js/jquery.waypoints.min.js}"></script>
+<!-- Flexslider -->
+<script th:src="@{../../js/jquery.flexslider-min.js}"></script>
+<!-- Owl carousel -->
+<script th:src="@{../../js/owl.carousel.min.js}"></script>
+<!-- Magnific Popup -->
+<script th:src="@{../../js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{../../js/magnific-popup-options.js}"></script>
+<!-- Date Picker -->
+<script th:src="@{../../js/bootstrap-datepicker.js}"></script>
+<!-- Stellar Parallax -->
+<script th:src="@{../../js/jquery.stellar.min.js}"></script>
+<!-- Main -->
+<script th:src="@{../../js/main.js}"></script>
+    <script th:src="@{../../js/main2.js}"></script>
+</body>
+</html>

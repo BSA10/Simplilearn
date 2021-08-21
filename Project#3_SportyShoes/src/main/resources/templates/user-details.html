@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users Details</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/admin/dashboard/users}">
+            <span class="shadow ">Users</span>
+        </a>
+    </div>
+</nav>
+<div class="container">
+
+
+    <div class="container-sm p-5">
+        <h1 class="d-flex justify-content-center">Users</h1>
+        <table class="table table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Username</th>
+                <th>User Address</th>
+                <th>Cart Id</th>
+                <th>Products</th>
+            </tr>
+
+            </thead>
+            <tbody>
+            <td th:text="${user.id}"/>
+            <td th:text="${user.first_name}"/>
+            <td th:text="${user.username}"/>
+            <td>
+                <a th:href="@{/admin/dashboard/users/user-details/user-address(userId=${user.id})}">
+                <span th:text="'Address'"></span>
+                </a>
+            </td>
+            <td>
+                <div th:each="cart : ${user.cart}">
+                    <span th:text="${cart.id}"></span>
+                    <span th:text="${cart.quantity}"></span>
+                </div>
+            </td>
+            <td>
+                <div th:each="cart : ${user.cart}">
+                    <div th:each="prod : ${cart.product}">
+                        <span th:text="${prod.name}"></span>
+                    </div>
+                </div>
+            </td>
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+</div>
+
+</body>
+</html>
