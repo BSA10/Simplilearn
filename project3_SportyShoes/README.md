@@ -30,7 +30,7 @@ mvn spring-boot:run
 - HTML , CSS (Bootstrap) , JavaScript ( JQuery )
 - MySQL
 
-## Screenshots
+# Screenshots
 
 ![Index](https://github.com/bsa10/Simplilearn/blob/main/project3_SportyShoes/screenshots/index.png)
 ![Login](https://github.com/bsa10/Simplilearn/blob/main/project3_SportyShoes/screenshots/login.png)
